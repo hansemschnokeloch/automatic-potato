@@ -10,14 +10,6 @@ let
     hash = "sha256-74kQIFf3Cu1aeOsohCiLuA1aXNGYt2U9tTUP0yvm4EA=";
   };
   phps = import nix-phps;
-  # virtualHosts
-  myHosts = [
-    {
-      phpVersion = "php81";
-      serverName = "wpi.php81.localhost";
-      documentRoot = "/var/www/ESW/wpi";
-    }
-  ];
 
   # create phpfpm pools with multiple php versions
   mkPhpFpm = phpXX:
