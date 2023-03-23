@@ -20,6 +20,8 @@
     ./../../modules/ios.nix
     ./../../modules/virtualisation.nix
     ./../../modules/packages.nix
+    ./../../modules/dev.nix
+    ./../../modules/zsa.nix
 
     ./../../devices/samsung-clx3185.nix
 
