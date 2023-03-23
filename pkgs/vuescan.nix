@@ -33,7 +33,7 @@ let
       {
         x86_64-linux = fetchurl {
           url = "${base}/vuex64${versionString}.tgz";
-          hash = "sha256-Dx69aJRrvT5Y7w8TBA3bhrrAHOSg4hnHqgiunsGFVHE=";
+          hash = "sha256-IhwIQMamf4Caswx28j0zuveKfMdewe4kLiieRWWpaZY=";
         };
       }.${system} or throwSystem;
 

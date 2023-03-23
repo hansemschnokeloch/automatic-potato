@@ -2,7 +2,7 @@
 
 let
   name = "navicat";
-  version = "16.1.6";
+  version = "16.1.7";
   # Minor versions are released using the same file name
   versionItems = builtins.splitVersion version;
   majorVersion = (builtins.elemAt versionItems 0);
@@ -13,7 +13,7 @@ let
 
   src = fetchurl {
     url = "https://download3.navicat.com/download/navicat${majorVersion}-premium-en.AppImage";
-    hash = "sha256-kTHXWJwRpvl5YgnpiQ5bu51M7jPDyNwMxipmVeKvI4Y=";
+    hash = "sha256-hnmkSPrio5MbBknFFKo5f6/p8ISQWMvCYSEAjOyEwso=";
   };
 in
 
