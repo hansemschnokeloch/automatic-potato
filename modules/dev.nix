@@ -58,17 +58,14 @@ let
         '';
     };
   };
-  caddyVhosts = builtins.listToAttrs (builtins.map mkVhost hosts);
-  hosts = builtins.fromJSON (builtins.readFile ./../_local/hosts.json);
   caddyLocalRootCert = builtins.readFile ./../_local/caddy.root.cert.pem;
+  localDevConfig = builtins.fromJSON (builtins.readFile ./../_local/devconfig.json);
+  caddyVhosts = builtins.listToAttrs (builtins.map mkVhost localDevConfig.hosts);
   # hosts.json example
   # [
   #     { "sub": "project1", "phpXX": "php73", "root": "/project1/public" },
   #     { "sub": "project2", "phpXX": "php81", "root": "/project2/www" }
   # ]
-
-  # databases
-  databases = [ "sarl" "merlin" "uther" "perceval" "dgd" ];
 
   # caddy virtual hosts
   # mkDot = builtins.concatStringsSep ".";
@@ -107,7 +104,7 @@ in
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
-    ensureDatabases = databases;
+    ensureDatabases = localDevConfig.databases;
     initialScript = pkgs.writeText "mysql-init.sql" ''
       CREATE USER 'devuser'@'localhost' IDENTIFIED BY 'devpwd';
       GRANT ALL PRIVILEGES ON *.* TO 'devuser'@'localhost';
