@@ -59,13 +59,13 @@ let
     };
   };
   caddyVhosts = builtins.listToAttrs (builtins.map mkVhost hosts);
-  hosts = [
-    { sub = "sarl"; phpXX = "php73"; root = "/SARL/dolibarr/htdocs"; }
-    { sub = "merlin"; phpXX = "php73"; root = "/ESW/merlin.e-swin.net/public"; }
-    { sub = "uther"; phpXX = "php73"; root = "/ESW/uther.e-swin.net/public"; }
-    { sub = "perceval"; phpXX = "php73"; root = "/ESW/perceval.e-swin.net/public"; }
-    { sub = "dgd"; phpXX = "php73"; root = "/DGD/dgd.domicilgym.fr/public"; }
-  ];
+  hosts = builtins.fromJSON (builtins.readFile ./../_local/hosts.json);
+  caddyLocalRootCert = builtins.readFile ./../_local/caddy.root.cert.pem;
+  # hosts.json example
+  # [
+  #     { "sub": "project1", "phpXX": "php73", "root": "/project1/public" },
+  #     { "sub": "project2", "phpXX": "php81", "root": "/project2/www" }
+  # ]
 
   # databases
   databases = [ "sarl" "merlin" "uther" "perceval" "dgd" ];
@@ -128,6 +128,6 @@ in
     virtualHosts = caddyVhosts;
   };
   # caddy localhost root certificate
-  security.pki.certificates = [ (builtins.readFile ./../common/caddy.root.cert.pem) ];
+  security.pki.certificates = [ caddyLocalRootCert ];
 
 }
