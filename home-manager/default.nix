@@ -6,5 +6,6 @@
     ./bash.nix
     ./zsh.nix
     ./starship.nix
+    ./direnv.nix
   ];
 }
