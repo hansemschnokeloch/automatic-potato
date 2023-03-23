@@ -13,9 +13,9 @@ in
   };
 
   # docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless.enable = true;
-  virtualisation.docker.enableOnBoot = false;
+  # virtualisation.docker.enable = true;
+  # virtualisation.docker.rootless.enable = true;
+  # virtualisation.docker.enableOnBoot = false;
 
   services.usbmuxd.enable = true;
 }
