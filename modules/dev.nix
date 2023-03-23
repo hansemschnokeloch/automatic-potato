@@ -62,10 +62,14 @@ let
   localDevConfig = builtins.fromJSON (builtins.readFile ./../_local/devconfig.json);
   caddyVhosts = builtins.listToAttrs (builtins.map mkVhost localDevConfig.hosts);
   # hosts.json example
-  # [
-  #     { "sub": "project1", "phpXX": "php73", "root": "/project1/public" },
-  #     { "sub": "project2", "phpXX": "php81", "root": "/project2/www" }
-  # ]
+  # {
+  #   "hosts":
+  #   [
+  #       { "sub": "project1", "phpXX": "php73", "root": "/project1/public" },
+  #       { "sub": "project2", "phpXX": "php81", "root": "/project2/www" }
+  #   ],
+  #   "databases": [ "db1", "db2"]
+  # }
 
   # caddy virtual hosts
   # mkDot = builtins.concatStringsSep ".";
