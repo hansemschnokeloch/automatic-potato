@@ -11,7 +11,7 @@ let
   };
   phps = import nix-phps;
 
-  # create phpfpm pools with multiple php versions
+  # phpfpm pools with php version from nix-phps
   mkPhpFpm = phpXX:
     {
       name = phpXX;
@@ -25,7 +25,6 @@ let
           extraConfig = ''
           '';
         };
-
         settings = {
           "listen.owner" = config.services.caddy.user;
           "pm" = "dynamic";
@@ -38,10 +37,8 @@ let
         phpOptions = ''
           display_errors = on
           error_reporting = E_ALL
-
         '';
       };
-
     };
   phpfpmPools = builtins.listToAttrs (builtins.map mkPhpFpm [ "php73" "php74" "php80" "php81" ]);
 
