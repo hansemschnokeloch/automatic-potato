@@ -11,6 +11,7 @@
       c = "php bin/console";
       dep = "php vendor/bin/dep";
       ls = "exa";
+      php = "php -dmemory_limit=2G";
     };
     oh-my-zsh = {
       enable = true;

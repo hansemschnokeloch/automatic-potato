@@ -23,16 +23,16 @@ let
             xdebug
           ]));
           extraConfig = ''
+            memory_limit = 1G
           '';
         };
         settings = {
           "listen.owner" = config.services.caddy.user;
           "pm" = "dynamic";
-          "pm.max_children" = 75;
-          "pm.start_servers" = 10;
-          "pm.min_spare_servers" = 5;
-          "pm.max_spare_servers" = 20;
-          "pm.max_requests" = 500;
+          "pm.max_children" = 5;
+          "pm.start_servers" = 2;
+          "pm.min_spare_servers" = 1;
+          "pm.max_spare_servers" = 5;
         };
         phpOptions = ''
           display_errors = on
