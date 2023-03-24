@@ -49,7 +49,7 @@ let
     value = {
       extraConfig =
         ''
-          root * /var/www/${root}
+          root * /var/www${root}
           file_server browse
           php_fastcgi unix/${config.services.phpfpm.pools.${phpXX}.socket}
         '';
