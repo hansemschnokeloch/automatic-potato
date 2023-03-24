@@ -7,7 +7,7 @@
     nix-direnv.enable = true;
     config = {
       whitelist = {
-        prefix = [ "$HOME/Data/_DEV" "/var/www/" ];
+        prefix = [ "/home/dev" ];
       };
     };
   };
