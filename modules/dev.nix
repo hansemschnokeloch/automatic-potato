@@ -57,7 +57,15 @@ let
   };
   caddyLocalRootCert = builtins.readFile ./../_local/caddy.root.cert.pem;
   localDevConfig = builtins.fromJSON (builtins.readFile ./../_local/devconfig.json);
-  caddyVhosts = builtins.listToAttrs (builtins.map mkVhost localDevConfig.hosts);
+  caddyVhosts = builtins.listToAttrs (builtins.map mkVhost localDevConfig.hosts) // {
+    "documentation.localhost" = {
+      extraConfig =
+        ''
+          root * /var/www/RES/
+          file_server browse
+        '';
+    };
+  };
   # hosts.json example
   # {
   #   "hosts":
