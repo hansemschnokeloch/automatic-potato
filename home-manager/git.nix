@@ -20,6 +20,6 @@ in
       pull.rebase = false;
       init.defaultBranch = "main";
     };
-    ignores = [ ".container" ];
+    ignores = [ ".container" ".direnv" ];
   };
 }
