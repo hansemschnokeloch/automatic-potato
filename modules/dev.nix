@@ -81,18 +81,6 @@ let
   #   };
   # };
   # caddyVhosts = builtins.foldl' (host: vhosts: vhosts // mkVhost host) {} hosts;
-  # hosts = [
-  #   {
-  #     subdomain = "merlin";
-  #     phpXX = "php73";
-  #     root = "/ESW/merlin.e-swin.net/public";
-  #   }
-  #   {
-  #     subdomain = "uther";
-  #     phpXX = "php73";
-  #     root = "/ESW/uther.e-swin.net/public";
-  #   }
-  # ];
 
 in
 {
