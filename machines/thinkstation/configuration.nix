@@ -17,6 +17,8 @@ in
     ./hardware-configuration.nix
     ./packages.nix # specific packages
     ./../../modules
+    ./../../modules/sane.nix # sane config to use with samsung scanner
+    ./../../modules/samsung-clx3185.nix
     <home-manager/nixos>
   ];
 
