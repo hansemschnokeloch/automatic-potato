@@ -1,15 +1,13 @@
 #########################################################
-# Configuration file for Lenovo ThinkStation P350 Tiny
-# CPU 11th Gen Intel i9-11900T (16) @ 4.800GHz 
-# GPU Intel RocketLake-S GT1 [UHD Graphics 750] 
-# GPU NVIDIA T600 
-# Memory: 31773MiB
+# Configuration file for Dell XPS 13 plus 9520
+# CPU 12th Gen Intel i7-1260P (16) @ 4.700GHz 
+# Memory: 31719MiB
 #########################################################
 
 { config, pkgs, lib, ... }:
 
 let
-  hostName = "ph-thinkstation";
+  hostName = "ph-xps13";
 in
 
 {

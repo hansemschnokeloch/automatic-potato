@@ -17,6 +17,7 @@ in
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
+  # using kernel from unstable in order to get the modules for unstable.vmware
   boot.kernelPackages = unstable.pkgs.linuxKernel.packages.linux_6_1;
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
