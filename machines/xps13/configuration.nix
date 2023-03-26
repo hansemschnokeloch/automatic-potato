@@ -27,7 +27,6 @@ in
     systemd-boot.enable = true;
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
     };
   };
 
@@ -52,11 +51,6 @@ in
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Nvidia
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
