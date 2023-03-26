@@ -122,6 +122,7 @@ in
     virtualHosts = caddyVhosts;
   };
   # caddy localhost root certificate
+  # get the certificate at http://localhost:2019/pki/ca/local
   security.pki.certificates = [ caddyLocalRootCert ];
 
 }
