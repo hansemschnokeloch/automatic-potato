@@ -17,7 +17,7 @@
   };
 
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_0;
   boot.kernelParams = [ "i915.enable_psr=0" ];
   boot.extraModulePackages = [ ];
 
