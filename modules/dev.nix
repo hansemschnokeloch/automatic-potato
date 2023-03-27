@@ -44,14 +44,14 @@ let
 
   # caddy virtual hosts
   mkDot = list: (builtins.concatStringsSep "." list);
-  mkVhost = { phpXX, root, sub }: rec {
+  mkVhost = { phpXX, root, sub, env }: rec {
     name = (mkDot [ sub phpXX "localhost" ]);
     value = {
       extraConfig =
         ''
           root * /var/www${root}
           file_server browse
-          php_fastcgi unix/${config.services.phpfpm.pools.${phpXX}.socket}
+          php_fastcgi unix/${config.services.phpfpm.pools.${phpXX}.socket} { ${env} }
         '';
     };
   };
@@ -70,8 +70,8 @@ let
   # {
   #   "hosts":
   #   [
-  #       { "sub": "project1", "phpXX": "php73", "root": "/project1/public" },
-  #       { "sub": "project2", "phpXX": "php81", "root": "/project2/www" }
+  #       { "sub": "project1", "phpXX": "php73", "root": "/project1/public", "env": "" },
+  #       { "sub": "project2", "phpXX": "php81", "root": "/project2/www", "env": "env CI_ENV development" }
   #   ],
   #   "databases": [ "db1", "db2"]
   # }
