@@ -29,13 +29,14 @@ in
     zip # zip archive utility - compressor
 
     # neovim
-    neovim-unwrapped # ❤️
+    unstable.neovim-unwrapped # ❤️
     black # python code formatter
     cargo # rust package manager
     stylua # lua code formatter
     sumneko-lua-language-server # LSP for lua
     tree-sitter # parser generator tool
     wl-clipboard # command line copy/paste utility for wayland
+    nixpkgs-fmt
 
     # webdev
     navicat
