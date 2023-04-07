@@ -40,7 +40,45 @@ let
         '';
       };
     };
-  phpfpmPools = builtins.listToAttrs (builtins.map mkPhpFpm [ "php73" "php74" "php80" "php81" ]);
+  phpfpmPools = builtins.listToAttrs (builtins.map mkPhpFpm [ "php73" "php74" "php80" "php81" "php82" ]);
+
+  # see https://github.com/NixOS/nixpkgs/issues/14671
+
+  caddy = with pkgs; stdenv.mkDerivation rec {
+    pname = "caddy";
+    version = "2.6.4";
+    dontUnpack = true;
+
+    nativeBuildInputs = [ git go xcaddy ];
+
+    plugins = [
+      "github.com/dunglas/vulcain@v0.4.3"
+      "github.com/dunglas/vulcain/caddy@5db72aacb40c39da83111004e7f045c18662659c"
+    ];
+
+    configurePhase = ''
+      export GOCACHE=$TMPDIR/go-cache
+      export GOPATH="$TMPDIR/go"
+      export GOPROXY=direct
+    '';
+
+    buildPhase =
+      let
+        pluginArgs = lib.concatMapStringsSep " " (plugin: "--with ${plugin}") plugins;
+      in
+      ''
+        runHook preBuild
+        ${xcaddy}/bin/xcaddy build "v${version}" ${pluginArgs}
+        runHook postBuild
+      '';
+
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/bin
+      mv caddy $out/bin
+      runHook postInstall
+    '';
+  };
 
   # caddy virtual hosts
   mkDot = list: (builtins.concatStringsSep "." list);
@@ -118,6 +156,7 @@ in
   # caddy webserver
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   services.caddy = {
+    # package = caddy;
     enable = true;
     virtualHosts = caddyVhosts;
   };
