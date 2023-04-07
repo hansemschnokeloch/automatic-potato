@@ -2,7 +2,7 @@
 
 { config, pkgs, lib, ... }:
 
-lib.mkIf (config.networking.hostName == "ph-thinksation")
+lib.mkIf (config.networking.hostName == "ph-thinkstation")
 {
 
   services.usbmuxd.enable = true;
