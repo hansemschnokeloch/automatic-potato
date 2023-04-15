@@ -12,9 +12,6 @@ let
     postInstall = ''
       ${prev.postInstall}
       echo "tcp 192.168.1.240" >> $out/etc/sane.d/xerox_mfp.conf
-      echo ""
-      echo "hello"
-      echo ""
     '';
   });
   # pkg = pkgs.sane-backends.override {
