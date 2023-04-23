@@ -10,6 +10,7 @@ let
 in
 
 {
+  nixpkgs.overlays = [ (import ./../overlays/insomnia.nix) ];
   environment.systemPackages = [
     # essential
     chromium # web browser
@@ -37,10 +38,13 @@ in
     tree-sitter # parser generator tool
     wl-clipboard # command line copy/paste utility for wayland
     nixpkgs-fmt
+    nil # nix LSP
 
     # webdev
     navicat
     postman # API development environment
+    httpie
+    insomnia
 
     # dev
     gcc # GNU compiler collection
@@ -65,6 +69,7 @@ in
     nodePackages.neovim
     nodePackages.intelephense
     nodePackages.tailwindcss
+    nodePackages.eslint
 
     # py3
     python3
