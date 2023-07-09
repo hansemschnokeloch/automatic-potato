@@ -13,7 +13,7 @@ let
 
   src = fetchurl {
     url = "https://download3.navicat.com/download/navicat${majorVersion}-premium-en.AppImage";
-    hash = "sha256-hnmkSPrio5MbBknFFKo5f6/p8ISQWMvCYSEAjOyEwso=";
+    hash = "sha256-noh1b9qegZJlxSicmOXTjDyjoxGMPDfCS7G2OeWPM8A=";
   };
 in
 
