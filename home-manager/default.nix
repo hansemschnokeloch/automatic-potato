@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -8,4 +8,6 @@
     ./starship.nix
     ./direnv.nix
   ];
+
+  home.stateVersion = "18.09";
 }
