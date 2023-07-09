@@ -5,7 +5,7 @@
   users.users.pascal = {
     isNormalUser = true;
     description = "pascal";
-    extraGroups = [ "networkmanager" "wheel" "docker" "lp" "scanner" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "lp" "scanner" "vboxusers" ];
   };
 
   environment.variables.EDITOR = "nvim";
@@ -26,4 +26,3 @@
     users.pascal = import ./../home-manager;
   };
 }
-
