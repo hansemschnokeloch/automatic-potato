@@ -1,6 +1,8 @@
 { pkgs, ... }: with pkgs;
 
 {
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = true;
   environment.systemPackages = [
     # games
     # leela-zero # go player
@@ -20,14 +22,15 @@
     homebank # personnal finance
 
     # photo
-    # rawtherapee # raw image processing
+    # rawtherapee # image processing
+    darktable # image processing
 
     # video
     handbrake # video transcoder
     vlc # VLC video player
 
     # visio
-    skypeforlinux # skype 
+    # skypeforlinux # skype 
     zoom-us # zoom
 
   ];
