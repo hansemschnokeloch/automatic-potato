@@ -1,12 +1,12 @@
 { config, lib, pkgs, modulesPath, ... }:
 
-let
-  unstable = import <nixos-unstable> {
-    config = {
-      allowUnfree = true;
-    };
-  };
-in
+# let
+#   unstable = import <nixos-unstable> {
+#     config = {
+#       allowUnfree = true;
+#     };
+#   };
+# in
 
 {
   imports =
@@ -16,12 +16,11 @@ in
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "iwlwifi" ];
   # using kernel from unstable in order to get the modules for unstable.vmware
-  boot.kernelPackages = unstable.pkgs.linuxKernel.packages.linux_6_1;
+  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
-  boot.loader.systemd-boot.consoleMode = "keep";
 
   fileSystems."/" =
     {
@@ -60,6 +59,4 @@ in
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
 }
