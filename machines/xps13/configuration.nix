@@ -11,6 +11,10 @@ let
 in
 
 {
+  # allow insecure pkgs
+  # see https://discourse.nixos.org/t/breaking-changes-announcement-for-unstable/17574/26
+  nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1u" ];
+
   imports = [
     ./hardware-configuration.nix
     ./packages.nix # specific packages
