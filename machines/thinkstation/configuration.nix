@@ -13,6 +13,10 @@ let
 in
 
 {
+  # allow insecure pkgs
+  # see https://discourse.nixos.org/t/breaking-changes-announcement-for-unstable/17574/26
+  nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1u" ];
+
   imports = [
     ./hardware-configuration.nix
     ./packages.nix # specific packages
@@ -29,12 +33,12 @@ in
   boot.loader = {
     systemd-boot.configurationLimit = 20;
     systemd-boot.enable = true;
+    systemd-boot.consoleMode = "auto";
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/efi";
     };
   };
-
   # networking
   networking.networkmanager.enable = true;
   networking.hostName = hostName;
