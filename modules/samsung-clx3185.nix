@@ -13,6 +13,12 @@ in
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   services.avahi.openFirewall = true;
+  services.avahi.publish = {
+    enable = true;
+    addresses = true;
+    workstation = true;
+    userServices = true;
+  };
   networking.firewall.allowedUDPPorts = [ 5353 ];
   # disable module and import local version
   disabledModules = [ "services/hardware/sane.nix" ];
@@ -21,4 +27,3 @@ in
   services.udev.packages = [ vuescan ];
   environment.systemPackages = [ vuescan ];
 }
-
