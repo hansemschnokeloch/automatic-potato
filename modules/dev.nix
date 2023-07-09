@@ -40,11 +40,12 @@ let
         '';
       };
     };
-  phpfpmPools = builtins.listToAttrs (builtins.map mkPhpFpm [ "php73" "php74" "php80" "php81" "php82" ]);
+  phpfpmPools = builtins.listToAttrs (builtins.map mkPhpFpm [ "php73" "php74" "php81" "php82" ]);
 
   # see https://github.com/NixOS/nixpkgs/issues/14671
 
   caddy = with pkgs; stdenv.mkDerivation rec {
+    __noChroot = true;
     pname = "caddy";
     version = "2.6.4";
     dontUnpack = true;
@@ -59,7 +60,6 @@ let
     configurePhase = ''
       export GOCACHE=$TMPDIR/go-cache
       export GOPATH="$TMPDIR/go"
-      export GOPROXY=direct
     '';
 
     buildPhase =
@@ -90,6 +90,7 @@ let
           root * /var/www${root}
           file_server browse
           php_fastcgi unix/${config.services.phpfpm.pools.${phpXX}.socket} { ${env} }
+          rewrite /rest/* /rest/index.php?{query}
         '';
     };
   };
