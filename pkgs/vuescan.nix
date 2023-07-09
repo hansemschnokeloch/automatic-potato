@@ -22,7 +22,7 @@ let
 
   pname = "vuescan";
   # Minor versions are released using the same file name
-  version = "9.7.99";
+  version = "9.8.05";
   versionItems = builtins.splitVersion version;
   versionString = (builtins.elemAt versionItems 0) + (builtins.elemAt versionItems 1);
 
@@ -33,7 +33,7 @@ let
       {
         x86_64-linux = fetchurl {
           url = "${base}/vuex64${versionString}.tgz";
-          hash = "sha256-IhwIQMamf4Caswx28j0zuveKfMdewe4kLiieRWWpaZY=";
+          hash = "sha256-GweW2APbm6iaKj4aEM8Wb41gjEg3Q4r70dg1PqDtomg=";
         };
       }.${system} or throwSystem;
 
@@ -93,5 +93,3 @@ stdenv.mkDerivation rec {
     ln -s ${desktopItem}/share/applications/* $out/share/applications
   '';
 }
-
-
