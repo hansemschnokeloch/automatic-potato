@@ -7,6 +7,10 @@
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
+    # to be able to configure binary cache as user pascal
+    trusted-users = [ "root" "pascal" ];
+    # relaxed to allow the use of __noChroot = true option in derivations
+    # sandbox = "relaxed";
   };
   nix.gc = {
     automatic = true;
@@ -18,9 +22,6 @@
     nixos-option # nixos options viewer
     cachix # nix binary cache
   ];
-
-  # to be able to configure binary cache as user pascal
-  nix.settings.trusted-users = [ "root" "pascal" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
